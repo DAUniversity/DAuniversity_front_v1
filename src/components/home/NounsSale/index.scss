@@ -1,0 +1,25 @@
+.nouns-sale {
+  background: #d2faff;
+  -webkit-box-shadow: inset 0px -2px 15px 3px rgba(0,0,0,0.42); 
+  box-shadow: inset 0px -2px 15px 3px rgba(0,0,0,0.42);
+  .grid {
+    display: flex;        
+    &.grid-left{
+      justify-content: center;
+      .temp-noun-u {
+        min-width: 350px;
+        margin-top: 30px;
+      }
+    }
+    &.grid-right{
+      justify-content: start;
+      .card-sale {
+        background: #fafafa;
+        align-self: flex-end;
+        min-width: 300px;
+        -webkit-box-shadow: 1px -6px 15px -1px rgba(0,0,0,0.4); 
+        box-shadow: 1px -6px 15px -1px rgba(0,0,0,0.4);
+      }
+    }
+  }
+}
