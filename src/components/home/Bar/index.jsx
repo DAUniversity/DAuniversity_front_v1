@@ -12,13 +12,33 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import CommentIcon from '@mui/icons-material/Comment';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-
 import logo from '../../../assets/images/logo.jpg'; // Tell webpack this JS file uses this image
 import './index.scss';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [
+  {
+    icon: <CommentIcon/>,
+    title: 'DAO'
+  },
+  {
+    icon: <MenuBookIcon/>,
+    title: 'Docs'
+  },
+  {
+    icon: <FavoriteIcon/>,
+    title: 'Projects'
+  },
+  {
+    icon: <AddToHomeScreenIcon/>,
+    title: 'Join the DAO'
+  },
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
@@ -76,6 +96,7 @@ const Bar = () => {
                   <MenuIcon />
                 </IconButton>
                 <Menu
+                  className="menu-sx-container"
                   id="menu-appbar"
                   anchorEl={anchorElNav}
                   anchorOrigin={{
@@ -94,8 +115,9 @@ const Bar = () => {
                   }}
                 >
                   {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
+                    <MenuItem className="menu-sx" key={page.title} onClick={handleCloseNavMenu}>
+                      <div className="menu-icon">{page.icon}</div>
+                      <Typography className="menu-text">{page.title}</Typography>
                     </MenuItem>
                   ))}
                 </Menu>
@@ -108,14 +130,16 @@ const Bar = () => {
               >
                 <img className="logo-dau" src={logo} alt="Logo" />
               </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Box className="menu-md-container" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
-                  <Button
-                    key={page}
+                  <Button 
+                    className="menu-md"
+                    key={page.title}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: '#333333', display: 'block' }}
                   >
-                    {page}
+                    <div className="menu-icon">{page.icon}</div>
+                    <div className="menu-text">{page.title}</div>
                   </Button>
                 ))}
               </Box>
