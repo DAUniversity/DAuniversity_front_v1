@@ -1,3 +1,32 @@
 .logo-dau{
     width: 50px;
 }
+.menu-sx-container{
+  .menu-sx{
+    .menu-text{
+      margin-left: 5px;
+    }
+    &:hover{
+      color: #7bb6eb;;
+    }
+  }
+}
+.menu-md-container{
+  display: flex;
+  justify-content: flex-end;
+  .menu-md{
+    display: flex;
+    justify-content: center;
+    min-width: 120px;
+    .menu-text{
+      margin-left: 5px;
+    }
+    .menu-icon{
+      position: relative;
+      top: 3px;
+    }
+    &:hover{
+      color: #7bb6eb;;
+    }
+  }
+}
