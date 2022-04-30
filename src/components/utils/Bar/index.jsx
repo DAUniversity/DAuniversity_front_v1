@@ -17,34 +17,44 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import logo from '../../../assets/images/logo.jpg'; // Tell webpack this JS file uses this image
 import './index.scss';
 
+
 const pages = [
   {
-    icon: <CommentIcon/>,
-    title: 'DAO'
+    icon: <CommentIcon />,
+    title: 'DAO',
+    linkTo: '/dao'
   },
   {
-    icon: <MenuBookIcon/>,
-    title: 'Docs'
+    icon: <MenuBookIcon />,
+    title: 'Docs',
+    linkTo: '/docs'
   },
   {
-    icon: <FavoriteIcon/>,
-    title: 'Projects'
+    icon: <FavoriteIcon />,
+    title: 'Projects',
+    linkTo: '/projects'
   },
   {
-    icon: <AddToHomeScreenIcon/>,
-    title: 'Join the DAO'
+    icon: <AddToHomeScreenIcon />,
+    title: 'Join the DAO',
+    linkTo: '/join_the_dao'
   },
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+  { name: 'Profile', linkTo: '/profile'},
+  { name: 'Logout'}
+];
 
 
 const Bar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  let navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -53,13 +63,18 @@ const Bar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (event) => {
     setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const navRedirectTo = (path) => {
+    console.log('navegamos a: ' + path);
+    navigate(path);
+  }
 
   const lightTheme = createTheme({
     palette: {
@@ -77,13 +92,18 @@ const Bar = () => {
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-          >
-            <img className="logo-dau" src={logo} alt="Logo" />
-          </Typography>
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                onClick={(event) => {
+                    navRedirectTo('/')
+                    handleOpenNavMenu(event)
+                  }
+                }
+              >
+                <img className="logo-dau" src={logo} alt="Logo" />
+              </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
                   size="large"
@@ -115,7 +135,13 @@ const Bar = () => {
                   }}
                 >
                   {pages.map((page) => (
-                    <MenuItem className="menu-sx" key={page.title} onClick={handleCloseNavMenu}>
+                    <MenuItem className="menu-sx" key={page.title}
+                      onClick={(event) => {
+                          navRedirectTo(page.linkTo)
+                          handleOpenNavMenu(event)
+                        }
+                      }
+                    >
                       <div className="menu-icon">{page.icon}</div>
                       <Typography className="menu-text">{page.title}</Typography>
                     </MenuItem>
@@ -127,15 +153,24 @@ const Bar = () => {
                 noWrap
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+                onClick={(event) => {
+                    navRedirectTo('/')
+                    handleOpenNavMenu(event)
+                  }
+                }
               >
                 <img className="logo-dau" src={logo} alt="Logo" />
               </Typography>
               <Box className="menu-md-container" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
-                  <Button 
+                  <Button
                     className="menu-md"
                     key={page.title}
-                    onClick={handleCloseNavMenu}
+                    onClick={(event) => {
+                        navRedirectTo(page.linkTo)
+                        handleOpenNavMenu(event)
+                      }
+                    }
                     sx={{ my: 2, color: '#333333', display: 'block' }}
                   >
                     <div className="menu-icon">{page.icon}</div>
@@ -167,8 +202,17 @@ const Bar = () => {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
+                    <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                      <Typography 
+                        textAlign="center"
+                        onClick={(event) => {
+                          navRedirectTo(setting.linkTo)
+                          handleOpenUserMenu(event)
+                        }
+                      }
+                      >
+                        {setting.name}
+                      </Typography>
                     </MenuItem>
                   ))}
                 </Menu>
