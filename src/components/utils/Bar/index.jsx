@@ -98,7 +98,6 @@ const Bar = () => {
                 sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                 onClick={(event) => {
                     navRedirectTo('/')
-                    handleOpenNavMenu(event)
                   }
                 }
               >
@@ -138,7 +137,7 @@ const Bar = () => {
                     <MenuItem className="menu-sx" key={page.title}
                       onClick={(event) => {
                           navRedirectTo(page.linkTo)
-                          handleOpenNavMenu(event)
+                          handleCloseNavMenu(event)
                         }
                       }
                     >
@@ -155,12 +154,12 @@ const Bar = () => {
                 sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                 onClick={(event) => {
                     navRedirectTo('/')
-                    handleOpenNavMenu(event)
                   }
                 }
               >
                 <img className="logo-dau" src={logo} alt="Logo" />
               </Typography>
+
               <Box className="menu-md-container" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
                   <Button
