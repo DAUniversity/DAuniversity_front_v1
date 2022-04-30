@@ -8,6 +8,7 @@ import Projects from "./pages/Projects";
 import JoinDao from "./pages/JoinDao";
 import Bar from "./components/utils/Bar";
 import PageNotFound from "./pages/PageNotFound";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/dao" element={<DAO />}></Route>
           <Route path="/docs" element={<Docs />}></Route>
           <Route path="/projects" element={<Projects />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
           <Route path="/join_the_dao" element={<JoinDao />}></Route>
           <Route path="/" element={<Home />}></Route>
           <Route path="*" element={<PageNotFound />}></Route>
