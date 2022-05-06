@@ -1,7 +1,6 @@
 import React from "react";
 
-
-function FirstAnnouncement() {
+export const FirstAnnouncement = () => {
   return (
     <div className="first-announcement section">
         first announcement
