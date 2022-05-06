@@ -5,8 +5,8 @@ import Footer from "../../components/home/Footer";
 import NounsSale from "../../components/home/NounsSale";
 import SocialNetworks from "../../components/home/SocialNetworks";
 
+export const Home = () => {
 
-function Home() {
   return (
     <div className="App">
       <NounsSale />

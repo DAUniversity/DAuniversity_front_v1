@@ -1,7 +1,6 @@
 import React from "react";
 
-
-function AboutUs() {
+export const AboutUs = () => {
   return (
     <div className="about-us section">
         about us

@@ -72,7 +72,6 @@ const Bar = () => {
   };
 
   const navRedirectTo = (path) => {
-    console.log('navegamos a: ' + path);
     navigate(path);
   }
 

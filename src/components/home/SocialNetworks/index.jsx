@@ -1,7 +1,6 @@
 import React from "react";
 
-
-function SocialNetworks() {
+export const SocialNetworks = () => {
   return (
     <div className="social-networks section">
         social networks
