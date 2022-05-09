@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import "./index.scss";
 
 import tempNounU from "../../../assets/images/temp_noun_u.png"; // Tell webpack this JS file uses this image
-import { Button, Card, CardContent } from "@mui/material";
+import { Button, Card, CardContent, getButtonBaseUtilityClass } from "@mui/material";
 
 export const NounsSale = () => {
 
@@ -27,10 +27,27 @@ export const NounsSale = () => {
     const newdate = date.add(value, 'days')
     setDate(newdate)
     const result = await getNoun();
-    if (result !== null) {
+    if (result !== null && result.id) {
       setNounImage({ id: result.id, svg: <div className="noun-data"><div dangerouslySetInnerHTML={{ __html: result.nounImage }} /></div>, "price": result.price, "owner": result.owner, "offerors": result.offerors })
+    }else {
+      setNounImage({ id: null, svg: <img className="temp-noun-u" src={tempNounU} alt="temp-noun-u" />, "price": 0, "owner": null, "offerors": [] });
     }
   }
+
+  const getButtonsNavigate = () =>{
+    if (nounImage.id){
+      return <div>
+              <Button  onClick={async (e) => await navigateNoun(e, -1)}>
+                {'<'}
+              </Button>
+              <div>{nounImage.id}</div>
+              <Button onClick={async (e) => await navigateNoun(e, 1)}>
+                {'>'}
+              </Button>
+            </div>
+    }
+    return null
+  };
 
   useEffect(() => {
     if (!mounted) {
@@ -48,13 +65,9 @@ export const NounsSale = () => {
 
         <Grid item md={6} className="grid grid-right">
           <div className="buttons">
-            <Button onClick={async (e) => await navigateNoun(e, -1)}>
-              {'<'}
-            </Button>
-            <div>{nounImage.id}</div>
-            <Button onClick={async (e) => await navigateNoun(e, 1)}>
-              {'>'}
-            </Button>
+            {
+              getButtonsNavigate()
+            }
           </div>
           <Card className="card-sale">
             <CardContent>
@@ -62,13 +75,13 @@ export const NounsSale = () => {
                 <b ># de Noun:</b> Beta 0.1
               </div>
               <div>precio de venta : {nounImage.price} eth</div>
-              <div>Subasta termina en: 10h 33m</div>              
+              <div>Subasta termina en: 10h 33m</div>
               <div className="lastOffers">
                 <div className="title_lastOffers">ultimas ofertas</div>
                 {
-                  nounImage.offerors.map(item => {
+                  nounImage.offerors ? nounImage.offerors.map(item => {
                     return <div className="item_lastOffers"><b>{item.owner.walletShort}:</b> {item.price} ETH</div>
-                  })
+                  }) : null
                 }
               </div>
               <div>
