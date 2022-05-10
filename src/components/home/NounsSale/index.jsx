@@ -36,7 +36,7 @@ export const NounsSale = () => {
 
   const getButtonsNavigate = () =>{
     if (nounImage.id){
-      return <div>
+      return <div className="buttons">
               <Button  onClick={async (e) => await navigateNoun(e, -1)}>
                 {'<'}
               </Button>
@@ -64,11 +64,9 @@ export const NounsSale = () => {
         </Grid>
 
         <Grid item md={6} className="grid grid-right">
-          <div className="buttons">
             {
               getButtonsNavigate()
             }
-          </div>
           <Card className="card-sale">
             <CardContent>
               <div className="title">
