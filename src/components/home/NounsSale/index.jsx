@@ -16,7 +16,7 @@ export const NounsSale = () => {
   const [nounImage, setNounImage] = useState({ id: null, svg: <img className="temp-noun-u" src={tempNounU} alt="temp-noun-u" />, "price": 0, "owner": null, "offerors": [] });
 
   const getNoun = async () => {
-    return axios.get('/v1/api/noun/' + date.format('YYYYMMDD')).then((response) => { return response.data });
+    return axios.get(process.env.REACT_APP_API_HOST + '/v1/api/noun/' + date.format('YYYYMMDD')).then((response) => { return response.data });
   }
 
   const getOldNoun = async () => {
