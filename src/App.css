@@ -1,9 +1,12 @@
 * {
     font-family: Roboto, sans-serif;
 }
+
 body{
     margin: 0;
+    padding-right: 0 !important;
 }
+
 .section{
   background: #fafafa;
   border-bottom: 1px solid #33333333;
@@ -11,3 +14,12 @@ body{
   text-align: center;
   padding: 20px;
 }
+
+img{
+  max-width: 100%;
+}
+/* 
+.MuiGrid-root{
+  width: 100% !important;
+  margin-left: 0px !important;
+} */

@@ -1,0 +1,55 @@
+.join-us {
+  background: rgb(5, 57, 184);
+  background: linear-gradient(180deg, rgba(5, 57, 184, 1) 0%, rgba(42, 165, 194, 1) 85%, rgba(42, 192, 173, 1) 100%);
+  color: #fff;
+  padding: 70px;
+  .grid-container {
+    justify-content: center;
+    margin-top: 0;
+    padding: 40px 0;
+
+    .__item {
+      margin-top: 0;
+      padding-top: 0;
+    }
+    
+    .item1 {
+
+      .__title {
+        font-size: 50px;
+        color: #fff;
+        font-weight: 400;
+        margin: 0;
+        align-self: center;
+      }
+
+      .__content {
+        font-size: 20px;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .item2 {
+      text-align: center;
+
+      .__title {
+        font-size: 20px;
+        padding: 0;
+        font-weight: 400;
+      }
+
+      .__content {
+        color: rgb(255, 255, 255, 0.6);
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+
+        .--text {
+          font-size: 15px;
+          padding: 15px;
+        }
+      }
+    }
+  }
+}

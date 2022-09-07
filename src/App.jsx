@@ -9,6 +9,7 @@ import JoinDao from "./pages/JoinDao";
 import Bar from "./components/utils/Bar";
 import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

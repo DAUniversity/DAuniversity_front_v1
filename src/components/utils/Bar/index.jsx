@@ -88,7 +88,7 @@ const Bar = () => {
     <Stack spacing={2} sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={lightTheme}>
         <AppBar position="static">
-          <Container maxWidth="xl">
+          <Container>
             <Toolbar disableGutters>
               <Typography
                 variant="h6"
