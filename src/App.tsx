@@ -1,7 +1,5 @@
-import React from "react";
-import Home from "./pages/Home";
-import './App.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
+import './App.css';
 import Docs from "./pages/Docs";
 import DAO from "./pages/DAO";
 import Projects from "./pages/Projects";
@@ -9,7 +7,9 @@ import JoinDao from "./pages/JoinDao";
 import Bar from "./components/utils/Bar";
 import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (

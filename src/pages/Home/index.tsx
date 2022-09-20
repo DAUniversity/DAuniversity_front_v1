@@ -8,11 +8,13 @@ import Faq from "../../components/home/Faq";
 import InspiredBy from "../../components/home/InspiredBy";
 import JoinUs from "../../components/home/JoinUs";
 import SocialNetworks from "../../components/home/SocialNetworks";
+import { MetaMask } from "components/utils/MetaMask";
 
 export const Home = () => {
 
   return (
     <div className="App">
+      <MetaMask />
       <NounsSale />
       <FirstAnnouncement />
       <AboutUs />

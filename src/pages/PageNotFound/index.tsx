@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const PageNotFound = props => {
+const PageNotFound = () => {
   return (
     <div>PageNotFound</div>
   )

@@ -6,9 +6,8 @@ import Grid from "@mui/material/Grid";
 
 import "./index.scss";
 
-import tempNounU from "../../../assets/images/temp_noun_u.png"; // Tell webpack this JS file uses this image
 import { styled } from '@mui/material/styles';
-import { Button, Card, CardContent, getButtonBaseUtilityClass } from "@mui/material";
+import { Button, Card, CardContent } from "@mui/material";
 
 export const NounsSale = () => {
 
@@ -23,7 +22,7 @@ export const NounsSale = () => {
     boxShadow: '5px 5px #000'
   }));
 
-  const WithoutColorCard = styled(Card)(({ }) => (
+  const WithoutColorCard = styled(Card)(() => (
     {
       backgroundColor: 'transparent',
       boxShadow: 'none'
@@ -32,24 +31,24 @@ export const NounsSale = () => {
 
   const [mounted, setMounted] = useState(false);
   const [date, setDate] = useState(moment());
-  const [nounImage, setNounImage] = useState({ id: null, svg: <img className="temp-noun-u" src={tempNounU} alt="temp-noun-u" />, "price": 0, "owner": null, "offerors": [] });
+  const [nounImage, setNounImage] = useState({ id: null, svg: <img className="temp-noun-u" src={"https://dau-resources.s3.amazonaws.com/temp_noun_u.png"} alt="temp-noun-u" />, "price": 0, "owner": null, "offerors": [] });
 
   const getNoun = async () => {
     return axios.get(process.env.REACT_APP_API_HOST + '/v1/api/noun/' + date.format('YYYYMMDD')).then((response) => { return response.data });
   }
 
-  const getOldNoun = async () => {
+  /*const getOldNoun = async () => {
     return axios.get(process.env.REACT_APP_API_HOST + '/v1/api/noun?limit=5').then((response) => { return response.data });
-  }
+  }*/
 
-  const navigateNoun = async (event, value) => {
+  const navigateNoun = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, value: moment.DurationInputArg1) => {
     const newdate = date.add(value, 'days')
     setDate(newdate)
     const result = await getNoun();
     if (result !== null && result.id) {
       setNounImage({ id: result.id, svg: <div className="noun-data"><div dangerouslySetInnerHTML={{ __html: result.nounImage }} /></div>, "price": result.price, "owner": result.owner, "offerors": result.offerors })
     } else {
-      setNounImage({ id: null, svg: <img className="temp-noun-u" src={tempNounU} alt="temp-noun-u" />, "price": 0, "owner": null, "offerors": [] });
+      setNounImage({ id: null, svg: <img className="temp-noun-u" src={"https://dau-resources.s3.amazonaws.com/temp_noun_u.png"} alt="temp-noun-u" />, "price": 0, "owner": null, "offerors": [] });
     }
   }
 
@@ -92,7 +91,7 @@ export const NounsSale = () => {
                 <div className="title_lastOffers">Last Offers</div>
                 {
                   nounImage.offerors ? nounImage.offerors.map(item => {
-                    return <div className="item_lastOffers"><b>{item.owner.walletShort}:</b> {item.price} ETH</div>
+                    return <div className="item_lastOffers"><b>{item['owner']['walletShort']}:</b> {item['price']} ETH</div>
                   }) : null
                 }
               </div>

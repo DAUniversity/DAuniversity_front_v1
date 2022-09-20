@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const Docs = props => {
+const Docs = () => {
   return (
     <div>Docs</div>
   )

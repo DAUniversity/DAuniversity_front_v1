@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const JoinDao = props => {
+const JoinDao = () => {
   return (
     <div>JoinDao</div>
   )

@@ -9,16 +9,16 @@ import Grid from "@mui/material/Grid";
 import { CardContent } from "@mui/material";
 
 export const Faq = () => {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState('');
 
   const handleChange =
-    (panel) => (event, isExpanded) => {
-      setExpanded(isExpanded ? panel : false);
+    (panel: string) => (event: unknown, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : '');
     };
 
   return (
     <Box className="first-announcement" sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} className="grid-container">        
+      <Grid container spacing={2} className="grid-container">
         <CardContent>
           <h2 className="__title">
             FAQ
@@ -35,11 +35,11 @@ export const Faq = () => {
               <Typography>
                 Inspired by the Nouns DAO, we created the UNIBADGES, an NFT that gives you the right to vote
                 in the DAUniversity DAO. You need at least one UNIBADGE to submit a proposal, or to vote a proposal.
-                <br/><br/>
+                <br /><br />
                 Each UNIBADGE is a 32x32 pixel badges, each represent _______. here are some examples:
-                <br/><br/>
+                <br /><br />
                 Light will be the main topic: Lightbulbs, Lighthouse, fire, Matches, etc.
-                <br/><br/>
+                <br /><br />
                 <a href="https://www.artblocks.io/token/250001022" target="_blank">https://www.artblocks.io/token/250001022</a>
               </Typography>
             </AccordionDetails>
@@ -55,15 +55,15 @@ export const Faq = () => {
             <AccordionDetails>
               <Typography>
                 DAUniversity DAO treasury increases by three sources:
-                <br/>
+                <br />
                 1. UNIBADGES daily auction (bidding starting price will be: treasury/supply)
-                <br/><br/>
+                <br /><br />
                 <h2>ONE DAO, EVERY DAY, FOREVER.</h2>
-                <br/>
+                <br />
                 2. Income from paid courses.
-                <br/>
+                <br />
                 3. Donations.
-                <br/>
+                <br />
                 4. Token sale.
               </Typography>
             </AccordionDetails>

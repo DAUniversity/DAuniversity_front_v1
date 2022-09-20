@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, MouseEvent } from "react";
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -17,9 +17,8 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useNavigate } from "react-router-dom";
+import { To, useNavigate } from "react-router-dom";
 import Stack from '@mui/material/Stack';
-import logo from '../../../assets/images/logo.jpg'; // Tell webpack this JS file uses this image
 import './index.scss';
 
 
@@ -46,32 +45,32 @@ const pages = [
   },
 ];
 const settings = [
-  { name: 'Profile', linkTo: '/profile'},
-  { name: 'Logout'}
+  { name: 'Profile', linkTo: '/profile' },
+  { name: 'Logout' }
 ];
 
 
 const Bar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  let navigate = useNavigate();
+  const [anchorElNav, setAnchorElNav] = useState<HTMLButtonElement>();
+  const [anchorElUser, setAnchorElUser] = useState<HTMLSpanElement>();
+  const navigate = useNavigate();
 
-  const handleOpenNavMenu = (event) => {
+  const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = (event: MouseEvent<HTMLSpanElement, globalThis.MouseEvent>) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (event) => {
-    setAnchorElNav(null);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(undefined);
   };
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+    setAnchorElUser(undefined);
   };
 
-  const navRedirectTo = (path) => {
+  const navRedirectTo = (path = '') => {
     navigate(path);
   }
 
@@ -96,11 +95,11 @@ const Bar = () => {
                 component="div"
                 sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                 onClick={(event) => {
-                    navRedirectTo('/')
-                  }
+                  navRedirectTo('/')
+                }
                 }
               >
-                <img className="logo-dau" src={logo} alt="Logo" />
+                <img className="logo-dau" src={'https://dau-resources.s3.amazonaws.com/logo.jpg'} alt="Logo" />
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
@@ -134,10 +133,10 @@ const Bar = () => {
                 >
                   {pages.map((page) => (
                     <MenuItem className="menu-sx" key={page.title}
-                      onClick={(event) => {
-                          navRedirectTo(page.linkTo)
-                          handleCloseNavMenu(event)
-                        }
+                      onClick={() => {
+                        navRedirectTo(page.linkTo)
+                        handleCloseNavMenu()
+                      }
                       }
                     >
                       <div className="menu-icon">{page.icon}</div>
@@ -151,12 +150,12 @@ const Bar = () => {
                 noWrap
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                onClick={(event) => {
-                    navRedirectTo('/')
-                  }
+                onClick={() => {
+                  navRedirectTo('/')
+                }
                 }
               >
-                <img className="logo-dau" src={logo} alt="Logo" />
+                <img className="logo-dau" src={'https://dau-resources.s3.amazonaws.com/logo.jpg'} alt="Logo" />
               </Typography>
 
               <Box className="menu-md-container" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -165,9 +164,9 @@ const Bar = () => {
                     className="menu-md"
                     key={page.title}
                     onClick={(event) => {
-                        navRedirectTo(page.linkTo)
-                        handleOpenNavMenu(event)
-                      }
+                      navRedirectTo(page.linkTo)
+                      handleOpenNavMenu(event)
+                    }
                     }
                     sx={{ my: 2, color: '#333333', display: 'block' }}
                   >
@@ -179,7 +178,10 @@ const Bar = () => {
 
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0 }}
+                  >
                     <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                   </IconButton>
                 </Tooltip>
@@ -201,13 +203,13 @@ const Bar = () => {
                 >
                   {settings.map((setting) => (
                     <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
-                      <Typography 
+                      <Typography
                         textAlign="center"
                         onClick={(event) => {
                           navRedirectTo(setting.linkTo)
                           handleOpenUserMenu(event)
                         }
-                      }
+                        }
                       >
                         {setting.name}
                       </Typography>
